@@ -1,24 +1,21 @@
 # api-cmv
 
-## Project setup
-```
-npm install
-```
+Este repositorio contiene el frontend del sistema de visualización de clientes y su CRUD.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Descripción
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Este proyecto de prueba está diseñado para manejar las operaciones CRUD de clientes asociados a la aplicación.
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Funcionalidades
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- **Listado de clientes**: Se visualizan los clientes de la base de datos en una data table.
+- **Botones dinámicos**: Los botones (Agregar Cliente, Editar Cliente, EliminarCliente) nos darán la función específica que se está solicitando.
+- **Formulario**: Al Agregar y Editar Cliente, nos abrirá un formulario para poder manipular y enviar los datos.
+
+## Tecnologías Utilizadas
+
+- **Vuejs**
+- **Javascript**
+- **Vuetify**
+- **Axios**
+- **CSS**
