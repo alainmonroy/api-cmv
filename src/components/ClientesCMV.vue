@@ -98,6 +98,13 @@
       <v-col cols="12" md="6">
         <v-text-field v-model="nuevoCliente.curp" label="CURP" required outlined />
       </v-col>
+      <v-col cols="12" md="6">
+        <v-select v-model="nuevoCliente.NombreCuenta" :items=tiposCuenta label="Tipo de Cuenta" required outlined/>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field v-model="nuevoCliente.saldo" label="Saldo" type="number" required outlined />
+      </v-col>
+
       <v-col cols="12">
         <v-btn
           @click="agregarCliente"
@@ -133,6 +140,12 @@
       <v-col cols="12" md="6">
         <v-text-field v-model="clienteEdicion.curp" label="CURP" required outlined />
       </v-col>
+      <v-col cols="12" md="6">
+        <v-select v-model="clienteEdicion.NombreCuenta" :items=tiposCuenta label="Tipo de Cuenta" required outlined/>
+      </v-col>
+      <v-col cols="12" md="6">
+        <v-text-field v-model="clienteEdicion.saldo" label="Saldo" type="number" required outlined />
+      </v-col>
       <v-col cols="12">
         <v-btn
           @click="actualizarCliente"
@@ -165,12 +178,19 @@ export default {
       itemsPerPage: 5,
       nuevoClienteVisible: false,
       editarClienteVisible: false,
+      tiposCuenta: [  
+        'CrediProntoCMV',
+        'PersonalCMV',
+        'AbicuentaCMV'
+    ],
       nuevoCliente: {
         nombre: '',
         apellido_Paterno: '',
         apellido_Materno: '',
         rfc: '',
         curp: '',
+        NombreCuenta: '',
+        saldo: ''
       },
       clienteEdicion: {
         id: null,
@@ -179,6 +199,8 @@ export default {
         apellido_Materno: '',
         rfc: '',
         curp: '',
+        NombreCliente: '',
+        saldo: ''
       },
       headers: [
         { text: "Seleccionar", align: "start", value: "select", class: "gray" },
@@ -198,7 +220,7 @@ export default {
     async obtenerClientes() {
       try {
         const response = await axios.get('/CMV/Lista');
-        this.clientes = response.data.response;
+        this.clientes = response.data.response;       
       } catch (error) {
         console.error("Error al obtener los clientes:", error);
       }
@@ -219,8 +241,8 @@ export default {
         alert("Por favor, seleccione un solo cliente para editar.");
       }
     },
-    async agregarCliente() {
-      try {
+    async agregarCliente() {  
+      try {        
         await axios.post('/CMV/InsertarCliente', this.nuevoCliente);
         this.obtenerClientes();
         this.cancelarNuevoCliente();
